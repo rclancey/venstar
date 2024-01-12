@@ -482,7 +482,7 @@ const (
 var schedulePartNames = map[SchedulePart]string{
 	SchedulePartMorning: "morning",
 	SchedulePartDay: "day",
-	SchedulePartEventing: "evening",
+	SchedulePartEvening: "evening",
 	SchedulePartNight: "night",
 	SchedulePartInactive: "inactive",
 }
