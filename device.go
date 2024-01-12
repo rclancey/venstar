@@ -336,6 +336,20 @@ const (
 	ModeCool
 	ModeAuto
 )
+var thermostatModeNames = map[ThermostatMode]string{
+	ModeOff: "off",
+	ModeHeat: "heat",
+	ModeCool: "cool",
+	ModeAuto: "auto",
+}
+
+func (mode ThermostatMode) String() string {
+	s, ok := thermostatModeNames[mode]
+	if !ok {
+		return fmt.Sprintf("ThermostatMode%d", mode)
+	}
+	return s
+}
 
 type ThermostatState int
 const (
@@ -345,39 +359,117 @@ const (
 	StateLockout
 	StateError
 )
+var thermostatStateNames = map[ThermostatState]string{
+	StateIdle: "idle",
+	StateHeating: "heating",
+	StateCooling: "cooling",
+	StateLockout: "lockout",
+	StateError: "error",
+}
+
+func (state ThermostatState) String() string {
+	s, ok := thermostatStateNames[state]
+	if !ok {
+		return fmt.Sprintf("ThermostatState%d", state)
+	}
+	return s
+}
 
 type DemandStage int
 const (
 	StageOff DemandStage = iota
-	StageHeating
-	StageCooling
-	StageLockout
-	StageError
+	StageHeating1
+	StageHeating2
+	StageCooling1
+	StageCooling2
 )
+var demandStageNames = map[DemandStage]string{
+	StageOff: "off",
+	StageHeating1: "heating1",
+	StageHeating2: "heating2",
+	StageCooling1: "cooling1",
+	StageCooling2: "cooling2",
+}
+
+func (stage DemandStage) String() string {
+	s, ok := demandStageNames[stage]
+	if !ok {
+		return fmt.Sprintf("DemandStage%d", stage)
+	}
+	return s
+}
 
 type FanSetting int
 const (
 	FanSettingAuto FanSetting = iota
 	FanSettingOff
 )
+var fanSettingNames = map[FanSetting]string{
+	FanSettingAuto: "auto",
+	FanSettingOff: "off",
+}
+
+func (fan FanSetting) String() string {
+	s, ok := fanSettingNames[fan]
+	if !ok {
+		return fmt.Sprintf("FanSetting%d", fan)
+	}
+	return s
+}
 
 type FanState int
 const (
 	FanStateOff FanState = iota
 	FanStateOn
 )
+var fanStateNames = map[FanState]string{
+	FanStateOff: "off",
+	FanStateOn: "on",
+}
+
+func (fan FanState) String() string {
+	s, ok := fanStateNames[fan]
+	if !ok {
+		return fmt.Sprintf("FanState%d", fan)
+	}
+	return s
+}
 
 type TempUnits int
 const (
 	Fahrenheit TempUnits = iota
 	Celsius
 )
+var tempUnitsNames = map[TempUnits]string{
+	Fahrenheit: "°F",
+	Celsius: "°C",
+}
+
+func (units TempUnits) String() string {
+	s, ok := tempUnitsNames[units]
+	if !ok {
+		return fmt.Sprintf("TempUnits%d", units)
+	}
+	return s
+}
 
 type ScheduleState int
 const (
 	ScheduleDisabled ScheduleState = iota
 	ScheduleEnabled
 )
+var scheduleStateNames = map[ScheduleState]string{
+	ScheduleDisabled: "disabled",
+	ScheduleEnabled: "enabled",
+}
+
+func (state ScheduleState) String() string {
+	s, ok := scheduleStateNames[state]
+	if !ok {
+		return fmt.Sprintf("ScheduleState%d", state)
+	}
+	return s
+}
 
 type SchedulePart int
 const (
@@ -387,36 +479,111 @@ const (
 	SchedulePartNight
 	SchedulePartInactive SchedulePart = 255
 )
+var schedulePartNames = map[SchedulePart]string{
+	SchedulePartMorning: "morning",
+	SchedulePartDay: "day",
+	SchedulePartEventing: "evening",
+	SchedulePartNight: "night",
+	SchedulePartInactive: "inactive",
+}
+
+func (part SchedulePart) String() string {
+	s, ok := schedulePartNames[part]
+	if !ok {
+		return fmt.Sprintf("SchedulePart%d", part)
+	}
+	return s
+}
 
 type AwayState int
 const (
 	AwayStateHome AwayState = iota
 	AwayStateAway
 )
+var awayStateNames = map[AwayState]string{
+	AwayStateHome: "home",
+	AwayStateAway: "away",
+}
+
+func (state AwayState) String() string {
+	s, ok := awayStateNames[state]
+	if !ok {
+		return fmt.Sprintf("AwayState%d", state)
+	}
+	return s
+}
 
 type HolidayState int
 const (
 	HolidayStateNotHoliday HolidayState = iota
 	HolidayStateHoliday
 )
+var holidayStateNames = map[HolidayState]string{
+	HolidayStateNotHoliday: "regular",
+	HolidayStateHoliday: "holiday",
+}
+
+func (state HolidayState) String() string {
+	s, ok := holidayStateNames[state]
+	if !ok {
+		return fmt.Sprintf("HolidayState%d", state)
+	}
+	return s
+}
 
 type OverrideState int
 const (
 	OverrideStateOff OverrideState = iota
 	OverrideStateOn
 )
+var overrideStateNames = map[OverrideState]string{
+	OverrideStateOff: "off",
+	OverrideStateOn: "on",
+}
+
+func (state OverrideState) String() string {
+	s, ok := overrideStateNames[state]
+	if !ok {
+		return fmt.Sprintf("OverrideState%d", state)
+	}
+	return s
+}
 
 type ForceUnoccState int
 const (
 	ForceUnoccOff ForceUnoccState = iota
 	ForceUnoccOn
 )
+var forceUnoccStateNames = map[ForceUnoccState]string{
+	ForceUnoccOff: "off",
+	ForceUnoccOn: "on",
+}
+
+func (state ForceUnoccState) String() string {
+	s, ok := forceUnoccStateNames[state]
+	if !ok {
+		return fmt.Sprintf("ForceUnoccState%d", state)
+	}
+	return s
+}
 
 type HumidifierState int
 const (
 	HumidifierOff HumidifierState = iota
 	HumidifierOn
 )
+var humidifierStateNames = map[HumidifierState]string{
+	HumidifierOff: "off",
+	HumidifierOn: "on",
+}
+
+func (state HumidifierState) String() string {
+	s, ok := humidifierStateNames[state]
+	if !ok {
+		return fmt.Sprintf("HumidifierState%d", state)
+	}
+	return s
+}
 
 type AvailableModes int
 const (
@@ -425,6 +592,20 @@ const (
 	AvailableModeHeat
 	AvailableModeCool
 )
+var availableModesNames = map[AvailableModes]string{
+	AvailableModeAll: "all",
+	AvailableModeHeatCool: "heat/cool",
+	AvailableModeHeat: "heat",
+	AvailableModeCool: "cool",
+}
+
+func (mode AvailableModes) String() string {
+	s, ok := availableModesNames[mode]
+	if !ok {
+		return fmt.Sprintf("AvailableModes%d", mode)
+	}
+	return s
+}
 
 type DeviceInfo struct {
 	Name               string          `json:"name"`
