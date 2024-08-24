@@ -406,7 +406,7 @@ const (
 )
 var fanSettingNames = map[FanSetting]string{
 	FanSettingAuto: "auto",
-	FanSettingOff: "on",
+	FanSettingOn: "on",
 }
 
 func (fan FanSetting) String() string {
