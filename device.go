@@ -402,11 +402,11 @@ func (stage DemandStage) String() string {
 type FanSetting int
 const (
 	FanSettingAuto FanSetting = iota
-	FanSettingOff
+	FanSettingOn
 )
 var fanSettingNames = map[FanSetting]string{
 	FanSettingAuto: "auto",
-	FanSettingOff: "off",
+	FanSettingOff: "on",
 }
 
 func (fan FanSetting) String() string {
