@@ -293,6 +293,7 @@ func (dev *Device) SetTempUnits(units TempUnits) error {
 	return dev.post([]string{"settings"}, msg)
 }
 
+/*
 func (dev *Device) SetAway(away AwayState) error {
 	info, err := dev.Info()
 	if err != nil {
@@ -301,6 +302,7 @@ func (dev *Device) SetAway(away AwayState) error {
 	msg := info.SettingsMessage().WithAway(away)
 	return dev.post([]string{"settings"}, msg)
 }
+*/
 
 func (dev *Device) SetSchedule(sched ScheduleState) error {
 	info, err := dev.Info()
@@ -650,7 +652,7 @@ func (info *DeviceInfo) ControlMessage() ControlMessage {
 func (info *DeviceInfo) SettingsMessage() SettingsMessage {
 	return SettingsMessage{
 		TempUnits:          info.TempUnits,
-		Away:               info.Away,
+		//Away:               info.Away,
 		Schedule:           info.Schedule,
 		HumidifySetpoint:   info.HumidifySetpoint,
 		DehumidifySetpoint: info.DehumidifySetpoint,
@@ -748,7 +750,7 @@ func (msg ControlMessage) Validate() error {
 
 type SettingsMessage struct {
 	TempUnits          TempUnits     `json:"tempunits"`
-	Away               AwayState     `json:"away"`
+	//Away               AwayState     `json:"away"`
 	Schedule           ScheduleState `json:"schedule"`
 	HumidifySetpoint   float64       `json:"hum_setpoint"`
 	DehumidifySetpoint float64       `json:"dehum_setpoint"`
@@ -759,10 +761,12 @@ func (msg SettingsMessage) WithTempUnits(units TempUnits) SettingsMessage {
 	return msg
 }
 
+/*
 func (msg SettingsMessage) WithAway(away AwayState) SettingsMessage {
 	msg.Away = away
 	return msg
 }
+*/
 
 func (msg SettingsMessage) WithSchedule(sched ScheduleState) SettingsMessage {
 	msg.Schedule = sched
